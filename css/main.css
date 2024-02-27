@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
+
+:root {
+    --custom-ff-sans-serif: "Fjalla One", sans-serif;
+    --custom-ff-serif: "Lora", serif;
+    --custom-dark-color: #340410;
+    --custom-light-color: #f7beca;
+    --custom-body-bg: #fceaee;
+    --custom-secondary: #e70d3d;
+    --breakpoint: 990px;
+}
+
+body {
+    font-family: var(--custom-ff-serif);
+    background-color: var(--custom-body-bg);
+    color: var(--custom-dark-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--custom-ff-sans-serif);
+}
+
+.custom-btn {
+    background-color: var(--custom-dark-color);
+    color: var(--custom-light-color);
+    border: none;
+}
+
+.custom-btn:hover {
+    background-color: var(--custom-secondary);
+}
+
+.modal-btn {
+    margin: 0 auto;
+    display: block;
+}
+
+.modal-content {
+    background-color: var(--custom-body-bg);
+    color: var(--custom-dark-color);
+}
+
+.modal textarea {
+    resize: none;
+}
+
+.task-pane {
+    min-height: 40vh;
+    background-color: var(--custom-dark-color);
+    margin-bottom: 0.8rem;
+    color: var(--custom-light-color);
+}
+
+@media screen and (min-width: 990px) {
+    .task-display {
+        margin: 0 auto;
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 0.5rem;
+        grid-template-areas:
+            "heading heading heading"
+            "to-do in-progress complete";
+    }
+
+    .task-display > .heading {
+        grid-area: heading;
+    }
+    .task-display > .task-pane:nth-of-type(1) {
+        grid-area: to-do;
+    }
+    .task-display > .task-pane:nth-of-type(2) {
+        grid-area: in-progress;
+    }
+    .task-display > .task-pane:nth-of-type(3) {
+        grid-area: complete;
+    }
+}
