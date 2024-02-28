@@ -51,13 +51,13 @@
                                 <h2 class="modal-title fs-5">Add Task</h2>
                                 <button
                                     type="button"
-                                    class="btn-close"
+                                    class="btn-close custom-close"
                                     data-bs-dismiss="modal"
                                     aria-label="Close"
                                 ></button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form id="task-form">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label
@@ -102,7 +102,7 @@
                                             placeholder="Enter a brief decription of the task you are trying to complete"
                                         ></textarea>
                                     </div>
-                                    <div class="modal-footer">
+                                    <div class="modal-footer border-0">
                                         <button
                                             class="btn custom-btn"
                                             data-bs-dismiss="modal"
@@ -124,13 +124,20 @@
                         <ul class="list-unstyled">
                             <li>
                                 <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">
+                                            Special title treatment
+                                        </h4>
+                                    </div>
                                     <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
                                         <p class="card-text">
-                                            Some quick example text to build on
-                                            the card title and make up the bulk
-                                            of the card's content.
+                                            With supporting text below as a
+                                            natural lead-in to additional
+                                            content.
                                         </p>
+                                        <button href="#" class="btn custom-btn">
+                                            Go somewhere
+                                        </button>
                                     </div>
                                 </div>
                             </li>
