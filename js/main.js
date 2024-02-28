@@ -1,13 +1,20 @@
 $(function () {
     console.log("begin");
 
+    function getInitialStoredItems(key) {
+        const items = JSON.parse(localStorage.getItem(key));
+        return items;
+    }
+
+    const storeKey = "saved-items";
+
     const panelKeys = {
         TODO: "todo",
         IN_PROGRESS: "in-progress",
         DONE: "done",
     };
 
-    const allTasks = {
+    const allTasks = getInitialStoredItems(storeKey) ?? {
         todo: [],
         inProgress: [],
         completed: [],
@@ -47,6 +54,9 @@ $(function () {
             ui.draggable.attr("data-drop-location", dropLocation);
             // from the task store
             console.log(droppedTasks[droppedItemId]);
+            // if i dropped the item into the todo list, it means i moved it from the inprogressItems or completeditems
+            // Update those items and add it to the todoItems from the dropped objects dataset
+            // same principle for the other arrays
             switch (dropLocation) {
                 case panelKeys.TODO:
                     allTasks.inProgress = filter(
@@ -87,6 +97,7 @@ $(function () {
                 default:
                     break;
             }
+            localStorage.setItem(storeKey, JSON.stringify(allTasks));
         },
     };
 
@@ -97,6 +108,11 @@ $(function () {
     todo.droppable(droppableConfig);
     done.droppable(droppableConfig);
     inProgress.droppable(droppableConfig);
+
+    // initial render for all panels
+    renderDraggables(allTasks.todo, todo, panelKeys.TODO);
+    renderDraggables(allTasks.inProgress, inProgress, panelKeys.IN_PROGRESS);
+    renderDraggables(allTasks.completed, done, panelKeys.DONE);
 
     // first make sure we can collect items from form element
 
@@ -127,20 +143,56 @@ $(function () {
             id: crypto.randomUUID(),
             description,
             isNearlyDue: diff <= 2 && diff >= 1,
-            isDue: diff === 0,
+            isDue: diff <= 0,
             dueDate: dueDateObj.format("LL"),
         };
         allTasks.todo = [newTask, ...allTasks.todo];
         $(e.target).trigger("reset");
+        localStorage.setItem(storeKey, JSON.stringify(allTasks));
         renderDraggables(allTasks.todo, todo, panelKeys.TODO);
     });
+
+    function handleDelete(e) {
+        const clickTarget = $(e.target).is(`button[data-delete="task"]`);
+        if (!clickTarget) return;
+        // Here i want to know where im clickin on an item from. drop location is stored on the parent li
+        const parent = $(e.target).closest("li");
+        const itemLocation = parent.attr("data-drop-location");
+        console.log(itemLocation);
+        // I want to know the id of what im deleting
+        const itemId = parent.attr("data-item");
+        switch (itemLocation) {
+            case panelKeys.TODO:
+                allTasks.todo = filter(allTasks.todo, itemId);
+                todo.find(`li[data-item=${itemId}]`).remove();
+                delete droppedTasks[itemId];
+                break;
+            case panelKeys.IN_PROGRESS:
+                allTasks.inProgress = filter(allTasks.inProgress, itemId);
+                inProgress.find(`li[data-item=${itemId}]`).remove();
+                delete droppedTasks[itemId];
+                break;
+            case panelKeys.DONE:
+                allTasks.completed = filter(allTasks.completed, itemId);
+                done.find(`li[data-item=${itemId}]`).remove();
+                delete droppedTasks[itemId];
+                break;
+            default:
+                break;
+        }
+        localStorage.setItem(storeKey, JSON.stringify(allTasks));
+    }
 
     function renderDraggables(arr, ulWrapper, associatedPanel) {
         const listString = arr
             .map((task) => {
                 // storing the tasks as they're being rendered. what could possibly go wrong
                 droppedTasks[task.id] = task;
-                return `<li class="item" data-item="${task.id}" data-drop-location="${associatedPanel}">
+                return `<li class="item ${
+                    task.isNearlyDue ? "close" : task.isDue ? "due" : ""
+                }" data-item="${
+                    task.id
+                }" data-drop-location="${associatedPanel}">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title">
@@ -166,6 +218,8 @@ $(function () {
 
         const listItemComp = $(listString);
         ulWrapper.html(listItemComp);
+        // see above for callback function definition
+        listItemComp.on("click", handleDelete);
         ulWrapper.find(`li.item`).draggable(draggableConfig);
     }
 });
