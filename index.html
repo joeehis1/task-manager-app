@@ -71,6 +71,7 @@
                                                 id="task_name"
                                                 placeholder="Enter task name"
                                                 class="form-control"
+                                                required
                                             />
                                         </div>
                                         <div class="col-sm-6">
@@ -84,6 +85,7 @@
                                                 name="due_date"
                                                 id="due_date"
                                                 class="form-control"
+                                                required
                                             />
                                         </div>
                                     </div>
@@ -99,6 +101,7 @@
                                             cols="30"
                                             rows="6"
                                             class="form-control"
+                                            required
                                             placeholder="Enter a brief decription of the task you are trying to complete"
                                         ></textarea>
                                     </div>
@@ -121,38 +124,20 @@
                     </div>
                     <div class="task-pane task-to-do p-2">
                         <h3>To Do</h3>
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">
-                                            Special title treatment
-                                        </h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text">
-                                            With supporting text below as a
-                                            natural lead-in to additional
-                                            content.
-                                        </p>
-                                        <button href="#" class="btn custom-btn">
-                                            Go somewhere
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                        <ul id="todo" class="list-unstyled"></ul>
                     </div>
                     <div class="task-pane task-in-progress p-2">
                         <h3>In Progress</h3>
+                        <ul id="in-progress" class="list-unstyled"></ul>
                     </div>
                     <div class="task-pane task-completed p-2">
                         <h3>Completed</h3>
+                        <ul id="done" class="list-unstyled"></ul>
                     </div>
                 </div>
             </div>
         </section>
-
+        <script src="https://cdn.jsdelivr.net/npm/dayjs-with-plugins@1.0.3/dist/dayjs-with-plugins.min.js"></script>
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
