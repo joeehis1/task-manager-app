@@ -77,7 +77,10 @@ h6 {
 
 .task-pane ul {
     min-height: inherit;
-    border: 2px solid;
+}
+
+.task-pane li {
+    margin-bottom: 0.8rem;
 }
 
 .task-pane:hover {
@@ -97,6 +100,24 @@ h6 {
     border-color: var(--orange);
 }
 
+.task-pane li.item.close .card {
+    background-color: var(--bs-warning);
+    color: var(--black);
+}
+
+.task-pane li.item.close .card h4 {
+    color: var(--black);
+}
+
+.task-pane li.item.due .card {
+    background-color: var(--bs-danger);
+    color: var(--white);
+}
+
+.task-pane li.item.due .card h4 {
+    color: var(--white);
+}
+
 @media screen and (min-width: 990px) {
     .task-display {
         margin: 0 auto;
@@ -104,6 +125,7 @@ h6 {
 
         grid-template-columns: repeat(3, 1fr);
         column-gap: 0.5rem;
+        align-items: start;
         grid-template-areas:
             "heading heading heading"
             "to-do in-progress complete";
