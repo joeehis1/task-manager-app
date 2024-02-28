@@ -132,7 +132,6 @@ $(function () {
             dueDateEl.val().trim() &&
             descEl.val().trim();
         if (!canSubmit) return;
-        console.log(taskName, dueDate, description);
 
         const today = dayjs();
         const dueDateObj = dayjs(dueDate);
@@ -158,7 +157,7 @@ $(function () {
         // Here i want to know where im clickin on an item from. drop location is stored on the parent li
         const parent = $(e.target).closest("li");
         const itemLocation = parent.attr("data-drop-location");
-        console.log(itemLocation);
+
         // I want to know the id of what im deleting
         const itemId = parent.attr("data-item");
         switch (itemLocation) {
