@@ -3,17 +3,30 @@
 :root {
     --custom-ff-sans-serif: "Fjalla One", sans-serif;
     --custom-ff-serif: "Lora", serif;
-    --custom-dark-color: #340410;
-    --custom-light-color: #f7beca;
-    --custom-body-bg: #fceaee;
-    --custom-secondary: #e70d3d;
     --breakpoint: 990px;
+
+    --orange: #e36e40;
+    --light-blue: #8ef2ff;
+    --white: #ffffff;
+    --black: #161819;
+    --grey: #3e3e43;
 }
 
 body {
     font-family: var(--custom-ff-serif);
-    background-color: var(--custom-body-bg);
-    color: var(--custom-dark-color);
+    background-color: var(--black);
+    color: var(--white);
+}
+
+h1 {
+    color: var(--orange);
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--light-blue);
 }
 
 h1,
@@ -26,13 +39,20 @@ h6 {
 }
 
 .custom-btn {
-    background-color: var(--custom-dark-color);
-    color: var(--custom-light-color);
-    border: none;
+    background-color: var(--black);
+    color: var(--white);
+    border: 1px solid var(--orange);
 }
 
 .custom-btn:hover {
-    background-color: var(--custom-secondary);
+    background-color: var(--grey);
+    border-color: transparent;
+}
+
+.modal input,
+.modal textarea {
+    background-color: var(--grey);
+    border-color: var(--orange);
 }
 
 .modal-btn {
@@ -41,8 +61,8 @@ h6 {
 }
 
 .modal-content {
-    background-color: var(--custom-body-bg);
-    color: var(--custom-dark-color);
+    background-color: var(--black);
+    color: var(--orange);
 }
 
 .modal textarea {
@@ -51,9 +71,21 @@ h6 {
 
 .task-pane {
     min-height: 40vh;
-    background-color: var(--custom-dark-color);
+    background-color: var(--grey);
     margin-bottom: 0.8rem;
-    color: var(--custom-light-color);
+}
+
+.task-pane .card {
+    background-color: #161819;
+    color: var(--white);
+}
+
+.task-pane h4 {
+    color: var(--orange);
+}
+
+.task-pane .card-header {
+    border-color: var(--orange);
 }
 
 @media screen and (min-width: 990px) {
