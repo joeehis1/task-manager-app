@@ -6,7 +6,7 @@ The Task Manager is a robust web application designed to streamline task organiz
 
 ## Usage
 
-Upon visiting the URL, users are greeted with intuitive instructions guiding them to seamlessly navigate the application. By clicking the "add task" button, users can effortlessly input task details, including name, due date, and description. The application dynamically categorizes tasks into "To Do", "In Progress", and "Completed" sections, empowering users to track their progress efficiently. Tasks nearing their due dates are visually highlighted, ensuring prioritization. Moreover, users can conveniently delete tasks with a single click. Task persistence across browser sessions provides uninterrupted access to essential information.
+Upon visiting the URL, users are greeted with an intuitive instruction guiding them to seamlessly navigate the application. By clicking the "add task" button, users can effortlessly input task details, including name, due date, and description. The application allows users to categorize tasks into "To Do", "In Progress", and "Completed" sections, empowering users to track their progress efficiently. Tasks nearing their due dates are visually highlighted, ensuring prioritization. Moreover, users can conveniently delete tasks with a single click. Task persistence across browser sessions provides uninterrupted access to essential information.
 
 ## File Structure
 
